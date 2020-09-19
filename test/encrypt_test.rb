@@ -26,7 +26,7 @@ class EncryptTest < Minitest::Test
     encrypt = Encrypt.new
 
     encrypt.random_5_digit_number
-    encrypt.generate_keys
+    encrypt.generate_shifts
   end
 
   def test_can_get_offset_number

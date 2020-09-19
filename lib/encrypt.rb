@@ -4,14 +4,17 @@ class Encrypt
   attr_reader :alphabet
 
   def initialize
+    #include shiftable
     @alphabet = ("a".."z").to_a << " "
     @random_number = []
     @a = nil
     @b = nil
     @c = nil
     @d = nil
+    #super(@message)
   end
 
+  #>>>>>>>>>>>shiftable?
   def random_5_digit_number
     4.times do
       @random_number << rand(9)
@@ -19,7 +22,7 @@ class Encrypt
     @random_number.insert(0, 0)
   end
 
-  def generate_keys
+  def generate_shifts
     @a = @random_number[0..1].join.to_i + offset[0]
     @b = @random_number[1..2].join.to_i + offset[1]
     @c = @random_number[2..3].join.to_i + offset[2]
@@ -35,4 +38,5 @@ class Encrypt
       number.to_i
     end
   end
+  #<<<<<<<<<<<<shiftable?
 end
