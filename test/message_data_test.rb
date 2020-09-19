@@ -7,8 +7,7 @@ class MessageDataTest < Minitest::Test
     message = MessageData.new(txt_file)
 
     assert_instance_of MessageData, message
-
-    message.read_message
+    assert_equal ["Y", "o", "u"], message.message_data.first(3)
   end
 
 end

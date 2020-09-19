@@ -1,4 +1,5 @@
 class MessageData
+  attr_reader :message_data
 
   def initialize(message_data)
     @message_data = self.read_message

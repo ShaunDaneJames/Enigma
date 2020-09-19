@@ -1,6 +1,7 @@
 require 'date'
+require_relative 'message_data'
 
-class Encrypt
+class Encrypt < MessageData
   attr_reader :alphabet
 
   def initialize
@@ -11,7 +12,7 @@ class Encrypt
     @b = nil
     @c = nil
     @d = nil
-    #super(@message)
+    super(message_data)
   end
 
   #>>>>>>>>>>>shiftable?
