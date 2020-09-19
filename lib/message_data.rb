@@ -1,0 +1,10 @@
+class MessageData
+
+  def initialize(message_data)
+    @message_data = self.read_message
+  end
+
+  def read_message
+    characters = File.read('./message_to_encrypt.txt').split("")
+  end
+end
