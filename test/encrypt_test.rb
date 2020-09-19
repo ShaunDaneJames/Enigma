@@ -8,4 +8,11 @@ class EncryptTest < Minitest::Test
     assert_instance_of Encrypt, encrypt
   end
 
+  def test_knows_alphabet_and_generates_random_number
+    encrypt = Encrypt.new
+
+    expected = ("a".."z").to_a << " "
+
+    assert_equal expected, encrypt.alphabet
+  end
 end
