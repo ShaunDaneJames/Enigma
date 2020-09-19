@@ -15,4 +15,12 @@ class EncryptTest < Minitest::Test
 
     assert_equal expected, encrypt.alphabet
   end
+
+  def test_can_pad_random_number_with_zero
+    encrypt = Encrypt.new
+
+    encrypt.random_5_digit_number
+  end
+
+  
 end

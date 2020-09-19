@@ -3,7 +3,13 @@ class Encrypt
 
   def initialize
     @alphabet = ("a".."z").to_a << " "
-    @random = rand(10000..99999)
-    require "pry"; binding.pry
+  end
+
+  def random_5_digit_number
+    number = []
+    4.times do
+      number << rand(9)
+    end
+    number.insert(0, 0)
   end
 end
