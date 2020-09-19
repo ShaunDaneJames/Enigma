@@ -22,5 +22,14 @@ class EncryptTest < Minitest::Test
     encrypt.random_5_digit_number
   end
 
-  
+  def test_assigns_keys_from_random_number
+    encrypt = Encrypt.new
+
+    encrypt.random_5_digit_number
+    encrypt.generate_keys
+  end
+
+  def test_can_get_offset_number
+
+  end
 end
