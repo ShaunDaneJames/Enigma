@@ -6,6 +6,6 @@ class MessageData
   end
 
   def read_message
-    characters = File.read('./message_to_encrypt.txt').downcase.split("")
+    characters = File.read('./message_to_encrypt.txt').downcase.chomp.split("")
   end
 end

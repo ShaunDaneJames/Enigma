@@ -30,6 +30,9 @@ class EncryptTest < Minitest::Test
   end
 
   def test_can_get_offset_number
+    encrypt = Encrypt.new
 
+    encrypt.encode_message
   end
+
 end
