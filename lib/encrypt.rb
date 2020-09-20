@@ -12,7 +12,7 @@ class Encrypt < MessageData
     @b = nil
     @c = nil
     @d = nil
-    @encrpyted_message = []
+    @encrypted_message = []
     super(message_data)
   end
 
@@ -20,42 +20,52 @@ class Encrypt < MessageData
     if @alphabet.include?(character)
       original_index = @alphabet.find_index(character)
       shift_value = original_index + @a
-      @encrypted_message << 0 #but shifted
-      #@alphabet[current index + shift] mindful of looping back
-      # to begining of alphabet
+      @alphabet.rotate(shift_value).first
     else
-    @encrypted_message << character
+    character
     end
   end
 
-  def encrypt_b_key
+  def encrypt_b_key(count, character)
     if @alphabet.include?(character)
       original_index = @alphabet.find_index(character)
-      shift_value = original_index + @a
-      @encrypted_message << 0 #but shifted
-      #@alphabet[current index + shift] mindful of looping back
-      # to begining of alphabet
+      shift_value = original_index + @b
+      @alphabet.rotate(shift_value).first
     else
-    @encrypted_message << character
+    character
     end
-    require "pry"; binding.pry
   end
 
-  def encrypt_c_key
+  def encrypt_c_key(count, character)
+    if @alphabet.include?(character)
+      original_index = @alphabet.find_index(character)
+      shift_value = original_index + @c
+      @alphabet.rotate(shift_value).first
+    else
+    character
+    end
   end
 
-  def encrypt_d_key
+  def encrypt_d_key(count, character)
+    if @alphabet.include?(character)
+      original_index = @alphabet.find_index(character)
+      shift_value = original_index + @d
+      @alphabet.rotate(shift_value).first
+    else
+    character
+    end
   end
 
   def encode_message
+    random_5_digit_number
+    generate_shifts
     count = 0
-    @encrypted_message = []
+    encode_message = []
+    while count < @message_data.count
     @message_data.each do |character|
-      while count < @message_data.count
         if count == 0 || count % 4 == 0
           @encrypted_message << encrypt_a_key(count, character)
         elsif count == 1 || count % 4 == 1
-          require "pry"; binding.pry
           @encrypted_message << encrypt_b_key(count, character)
         elsif count == 2 || count % 4 == 2
           @encrypted_message << encrypt_c_key(count, character)
@@ -63,6 +73,7 @@ class Encrypt < MessageData
           @encrypted_message << encrypt_d_key(count, character)
         end
         count += 1
+        @encrypted_message
       end
     end
     @encrypted_message
@@ -71,10 +82,9 @@ class Encrypt < MessageData
 
   #>>>>>>>>>>>shiftable?
   def random_5_digit_number
-    4.times do
+    5.times do
       @random_number << rand(9)
     end
-    @random_number.insert(0, 0)
   end
 
   def generate_shifts
