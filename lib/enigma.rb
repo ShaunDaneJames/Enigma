@@ -21,5 +21,15 @@ class Enigma
     @encrypted
   end
 
-
+  def decrypt(message, key = generate_shifts, date = offset)
+    decode = Decode.new(message, key, date)
+    decode.a_shift(key, date)
+    decode.b_shift(key, date)
+    decode.c_shift(key, date)
+    decode.d_shift(key, date)
+    @decrypted[:message] = decode.decode_message
+    @decrypted[:key] = key
+    @decrypted[:date] = date
+    @decrypted
+  end
 end
