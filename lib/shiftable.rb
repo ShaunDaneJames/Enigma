@@ -21,4 +21,7 @@ module Shiftable
       number.to_i
     end
   end
+
+  def generate_a_shift
+  end 
 end
