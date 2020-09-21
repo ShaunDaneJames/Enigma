@@ -1,11 +1,14 @@
+require './lib/enigma'
+require './lib/encode'
+
 message = File.open(ARGV[0], "r")
+incoming = message.read.chomp.split("")
+enigma = Enigma.new
+encrypted_message = enigma.encrypt(incoming, "02715", "040895")
+outgoing = File.open(ARGV[1], "w")
 
-incoming = message.read
+outgoing.write(encrypted_message)
 
-encrypted_message = incoming.upcase
+outgoing.close
 
-writer = File.open(ARGV[1], "w")
-
-writer.write(encrypted_message)
-
-writer.close
+puts "Created #{outgoing} with the key #{enigma.encrypted[:key]} and date #{enigma.encrypted[:date]}"

@@ -2,25 +2,23 @@ require 'date'
 require_relative 'message_data'
 require_relative 'shiftable'
 
-class Encrypt < MessageData
+class Encode
 include Shiftable
   attr_reader :alphabet
 
-  def initialize
+  def initialize(message, key, date)
+    @message = message
+    @key = key
+    @date = date
     @alphabet = ("a".."z").to_a << " "
     @random_number = []
-    @a = nil
-    @b = nil
-    @c = nil
-    @d = nil
     @encrypted_message = []
-    super(message_data)
   end
 
   def encrypt_a_key(count, character)
     if @alphabet.include?(character)
       original_index = @alphabet.find_index(character)
-      shift_value = original_index + @a
+      shift_value = original_index + @key[0..1].to_i
       @alphabet.rotate(shift_value).first
     else
     character
@@ -30,7 +28,7 @@ include Shiftable
   def encrypt_b_key(count, character)
     if @alphabet.include?(character)
       original_index = @alphabet.find_index(character)
-      shift_value = original_index + @b
+      shift_value = original_index + @key[1..2].to_i
       @alphabet.rotate(shift_value).first
     else
     character
@@ -40,7 +38,7 @@ include Shiftable
   def encrypt_c_key(count, character)
     if @alphabet.include?(character)
       original_index = @alphabet.find_index(character)
-      shift_value = original_index + @c
+      shift_value = original_index + @key[2..3].to_i
       @alphabet.rotate(shift_value).first
     else
     character
@@ -50,7 +48,7 @@ include Shiftable
   def encrypt_d_key(count, character)
     if @alphabet.include?(character)
       original_index = @alphabet.find_index(character)
-      shift_value = original_index + @d
+      shift_value = original_index + @key[3..4].to_i
       @alphabet.rotate(shift_value).first
     else
     character
@@ -58,12 +56,9 @@ include Shiftable
   end
 
   def encode_message
-    random_5_digit_number
-    generate_shifts
     count = 0
-    encode_message = []
-    while count < @message_data.count
-    @message_data.each do |character|
+    while count < @message.count
+    @message.each do |character|
         if count == 0 || count % 4 == 0
           @encrypted_message << encrypt_a_key(count, character)
         elsif count == 1 || count % 4 == 1
