@@ -1,6 +1,7 @@
 require './lib/shiftable'
 
 class Enigma
+  include Shiftable
   attr_reader :encrypted,
               :decrypted
 

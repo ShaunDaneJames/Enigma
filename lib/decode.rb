@@ -1,5 +1,4 @@
   require 'date'
-  require_relative 'message_data'
   require_relative 'shiftable'
 
   class Decode
