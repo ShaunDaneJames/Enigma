@@ -8,32 +8,27 @@ module Shiftable
     random_number
   end
 
-  def generate_shifts
-    randomly_generated = random_5_digit_number
-    generating_shifts = []
-    generate_a_shifts = randomly_generated[0..1].join.to_i + offset[0]
-    generate_b_shifts = randomly_generated[1..2].join.to_i + offset[1]
-    generate_c_shifts = randomly_generated[2..3].join.to_i + offset[2]
-    generate_d_shifts = randomly_generated[3..4].join.to_i + offset[3]
-    generating_shifts << generate_a_shifts
-    generating_shifts << generate_b_shifts
-    generating_shifts << generate_c_shifts
-    generating_shifts << generate_d_shifts
-    generating_shifts
-  end
+  # def generate_shifts
+  #   randomly_generated = random_5_digit_number
+  #   generating_shifts = []
+  #   generate_a_shifts = randomly_generated[0..1].join.to_i + offset[0]
+  #   generate_b_shifts = randomly_generated[1..2].join.to_i + offset[1]
+  #   generate_c_shifts = randomly_generated[2..3].join.to_i + offset[2]
+  #   generate_d_shifts = randomly_generated[3..4].join.to_i + offset[3]
+  #   generating_shifts << generate_a_shifts
+  #   generating_shifts << generate_b_shifts
+  #   generating_shifts << generate_c_shifts
+  #   generating_shifts << generate_d_shifts
+  #   generating_shifts
+  # end
 
-  #possibly combine both offsets with if conditional.
-  def get_offsets(date)
-    offsets = date.to_i * date.to_i
-    last_four = offsets.to_s.split("").last(4)
-    last_four.map do |number|
-      number.to_i
-    end
+  def actual_date
+    Time.now.strftime("%m%d%y").to_i
   end
 
   def offset
-    sq_date_time = Time.now.strftime("%m%d%y").to_i
-    offsets = sq_date_time * sq_date_time
+    date_time = Time.now.strftime("%m%d%y").to_i
+    offsets = date_time * date_time
     last_four = offsets.to_s.split("").last(4)
     last_four.map do |number|
       number.to_i
@@ -41,18 +36,18 @@ module Shiftable
   end
 
   def a_shift(key, date)
-    key[0..1].to_i + get_offsets(date)[0]
+    key[0..1].join.to_i + (date)[0].to_i
   end
 
   def b_shift(key, date)
-    key[1..2].to_i + get_offsets(date)[1]
+    key[1..2].join.to_i + (date)[1].to_i
   end
 
   def c_shift(key, date)
-    key[2..3].to_i + get_offsets(date)[2]
+    key[2..3].join.to_i + (date)[2].to_i
   end
 
   def d_shift(key, date)
-    key[3..4].to_i + get_offsets(date)[3]
+    key[3..4].join.to_i + (date)[3].to_i
   end
 end

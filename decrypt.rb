@@ -4,7 +4,7 @@ require './lib/decode'
 message = File.open(ARGV[0], "r")
 incoming = message.read.chomp
 enigma = Enigma.new
-decrypting_message = enigma.decrypt(incoming, "02715", "040895")
+decrypting_message = enigma.decrypt(incoming)
 outgoing = File.open(ARGV[1], "w")
 
 outgoing.write(decrypting_message[:message])
