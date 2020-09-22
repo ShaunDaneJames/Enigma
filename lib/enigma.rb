@@ -10,7 +10,7 @@ class Enigma
     @decrypted = Hash.new
   end
 
-  def encrypt(message, key = random_5_digit_number, date = offset)
+  def encrypt(message, key = random_5_digit_number, date = actual_date)
     if key.class == String
       key = key.split("").map {|key| key.to_i}
     end
@@ -20,12 +20,12 @@ class Enigma
     encode.c_shift(key, date)
     encode.d_shift(key, date)
     @encrypted[:message] = encode.encode_message
-    @encrypted[:key] = key.join.to_i
-    @encrypted[:date] = actual_date
+    @encrypted[:key] = key.join
+    @encrypted[:date] = date
     @encrypted
   end
 
-  def decrypt(message, key = random_5_digit_number, date = offset)
+  def decrypt(message, key = random_5_digit_number, date = actual_date)
     if key.class == String
       key = key.split("").map {|key| key.to_i}
     end
@@ -35,8 +35,8 @@ class Enigma
     decode.c_shift(key, date)
     decode.d_shift(key, date)
     @decrypted[:message] = decode.decode_message
-    @decrypted[:key] = key.join.to_i
-    @decrypted[:date] = actual_date
+    @decrypted[:key] = key.join
+    @decrypted[:date] = date
     @decrypted
   end
 end

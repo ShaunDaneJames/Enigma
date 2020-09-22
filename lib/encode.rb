@@ -3,7 +3,9 @@ require_relative 'shiftable'
 
 class Encode
 include Shiftable
-  attr_reader :alphabet
+  attr_reader :alphabet,
+              :key,
+              :date
 
   def initialize(message, key, date)
     @message = message.downcase.split("")
@@ -19,7 +21,7 @@ include Shiftable
       shift_value = original_index + a_shift(@key, @date)
       @alphabet.rotate(shift_value).first
     else
-    character
+      character
     end
   end
 
@@ -29,7 +31,7 @@ include Shiftable
       shift_value = original_index + b_shift(@key, @date)
       @alphabet.rotate(shift_value).first
     else
-    character
+      character
     end
   end
 
@@ -39,7 +41,7 @@ include Shiftable
       shift_value = original_index + c_shift(@key, @date)
       @alphabet.rotate(shift_value).first
     else
-    character
+      character
     end
   end
 
@@ -49,7 +51,7 @@ include Shiftable
       shift_value = original_index + d_shift(@key, @date)
       @alphabet.rotate(shift_value).first
     else
-    character
+      character
     end
   end
 

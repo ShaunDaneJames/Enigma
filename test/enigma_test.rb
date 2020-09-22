@@ -21,7 +21,6 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_can_decrypt
-    skip
     enigma = Enigma.new
 
     expected = {
