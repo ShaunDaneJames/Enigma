@@ -11,6 +11,9 @@ class Enigma
   end
 
   def encrypt(message, key = random_5_digit_number, date = offset)
+    if key.class == String
+      key = key.split("").map {|key| key.to_i}
+    end
     encode = Encode.new(message, key, date)
     encode.a_shift(key, date)
     encode.b_shift(key, date)
@@ -23,6 +26,9 @@ class Enigma
   end
 
   def decrypt(message, key = random_5_digit_number, date = offset)
+    if key.class == String
+      key = key.split("").map {|key| key.to_i}
+    end
     decode = Decode.new(message, key, date)
     decode.a_shift(key, date)
     decode.b_shift(key, date)

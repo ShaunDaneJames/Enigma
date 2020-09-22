@@ -8,20 +8,6 @@ module Shiftable
     random_number
   end
 
-  # def generate_shifts
-  #   randomly_generated = random_5_digit_number
-  #   generating_shifts = []
-  #   generate_a_shifts = randomly_generated[0..1].join.to_i + offset[0]
-  #   generate_b_shifts = randomly_generated[1..2].join.to_i + offset[1]
-  #   generate_c_shifts = randomly_generated[2..3].join.to_i + offset[2]
-  #   generate_d_shifts = randomly_generated[3..4].join.to_i + offset[3]
-  #   generating_shifts << generate_a_shifts
-  #   generating_shifts << generate_b_shifts
-  #   generating_shifts << generate_c_shifts
-  #   generating_shifts << generate_d_shifts
-  #   generating_shifts
-  # end
-
   def actual_date
     Time.now.strftime("%m%d%y").to_i
   end
