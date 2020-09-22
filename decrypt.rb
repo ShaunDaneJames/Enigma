@@ -7,7 +7,7 @@ incoming = message.read.chomp
 outgoing = File.open(ARGV[1], "w")
 key = ARGV[2]
 date = ARGV[3]
-decrypting_message = enigma.decrypt(incoming, key, date)
+decrypting_message = enigma.decrypt(incoming, key)
 
 outgoing.write(decrypting_message[:message])
 outgoing.close

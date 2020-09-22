@@ -3,9 +3,7 @@ require_relative 'shiftable'
 
 class Decode
   include Shiftable
-  attr_reader :alphabet,
-              :key,
-              :date
+  attr_reader :alphabet
 
   def initialize(message, key, date)
     @message = message.downcase.split("")
