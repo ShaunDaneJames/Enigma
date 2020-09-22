@@ -7,8 +7,6 @@ class DecodeTest < Minitest::Test
 
     assert_instance_of Decode, decode
     assert_equal ("a".."z").to_a << " ", decode.alphabet
-    assert_equal "02715", decode.key
-    assert_equal "040895", decode.date
   end
 
 end

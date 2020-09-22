@@ -12,7 +12,7 @@ class ShiftableTest < Minitest::Test
   def test_knows_date
     enigma = Enigma.new
 
-    enigma.stubs(:now).returns(210920)
+    enigma.stubs(:actual_date).returns(210920)
     assert_equal 210920, enigma.actual_date
   end
 
